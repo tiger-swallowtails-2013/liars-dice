@@ -1,4 +1,4 @@
-config = File.dirname("apps/config")
+config = File.dirname("../config")
 $LOAD_PATH.unshift(config) unless $LOAD_PATH.include?(config)
 require "config"
 
