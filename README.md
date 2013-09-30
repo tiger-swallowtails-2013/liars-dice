@@ -37,7 +37,7 @@
 * Login with Facebook
 * A winner can tweet that they won
 
-Branch Goals
+# Branch Goals
 1. Sessions
 2. Routes
 3. Tests
@@ -45,8 +45,8 @@ Branch Goals
   - Jasmine
   - Capybara
 4. Basic Database and Tables
-  - Users
-  - Games (game-id, player-ids)
+  - Players
+  - Games
 5. Basic UI
   - Single "shared" page where user can submit form info
   - Second user cannot see, but gets some report on what was submitted
