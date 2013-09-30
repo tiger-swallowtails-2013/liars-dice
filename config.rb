@@ -1,6 +1,9 @@
 require 'pathname'
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'app/models/game'
+require 'app/models/player'
+require 'tux' unless settings.production?
 require 'sqlite3' unless settings.production?
 require 'pg' if settings.production?
 
