@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130930184528) do
+ActiveRecord::Schema.define(version: 20131001003630) do
 
   create_table "games", force: true do |t|
     t.datetime "created_at"
@@ -19,12 +19,13 @@ ActiveRecord::Schema.define(version: 20130930184528) do
 
   create_table "players", force: true do |t|
     t.string   "name"
-    t.integer  "number_of_dice"
+    t.integer  "number_of_dice", default: 5
     t.string   "current_roll"
     t.string   "current_claim"
     t.integer  "game_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "bullshit",       default: false
   end
 
 end

@@ -10,12 +10,11 @@ get '/' do
   end
 end
 
-# DB is not getting written to - not sure why
 post '/play' do
   @player = Player.create(params)
   set_player_session(@player.id)
   @player.roll
-  @player.game = Game.create()
+  @player.game = Game.create
   erb :play
 end
 
@@ -25,7 +24,7 @@ get '/exit' do
     player.destroy
     session.clear
   end
-  erb :index
+  redirect '/'
 end
 
 helpers do
