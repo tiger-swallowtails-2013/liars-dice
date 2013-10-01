@@ -24,3 +24,12 @@ describe "quitting the game", :type => :feature do
     page.should have_content 'Enter your name'
   end
 end
+
+describe "playing the game", :type => :feature do
+  it "prints the players dice rolls" do
+    visit '/'
+    fill_in('name', :with => 'Dave')
+    click_button('Play Liars Dice!')
+    page.should have_content 's: /d/'
+  end
+end
