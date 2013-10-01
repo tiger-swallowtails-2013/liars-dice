@@ -4,14 +4,28 @@ require 'config'
 
 # Use the following to control with environment is set
 # RACK_ENV=test rake db:create
-desc "create the database"
+desc "create database"
 task "db:create" do
   puts "Creating file #{DB_PATH} if it doesn't exist..."
   touch DB_PATH
 end
 
-desc "drop the database"
+desc "drop dev database"
 task "db:drop" do
-  puts "Dropping #{DB_PATH} if it exists..."
-  exec 'rm -rf #{DB_PATH}'
+  rm_f DB_PATH
+end
+
+desc "create test database"
+task "db:create-test" do
+  exec "rake RACK_ENV=test db:create"
+end
+
+desc "drop test database"
+task "db:drop-test" do
+  exec "rake RACK_ENV=test db:drop"
+end
+
+desc "migrate test database"
+task "db:migrate-test" do
+  exec "rake RACK_ENV=test db:migrate"
 end

@@ -16,6 +16,7 @@ post '/play' do
   set_player_session(@player.id)
   @player.roll
   @player.game = Game.create
+
   erb :play
 end
 
@@ -25,7 +26,7 @@ get '/exit' do
     player.destroy
     session.clear
   end
-  erb :index
+  redirect '/'
 end
 
 helpers do
