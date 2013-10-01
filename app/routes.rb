@@ -21,7 +21,6 @@ end
 post '/claim' do
   @player = get_player
   @player.current_claim = "#{params[:numDice]}x#{params[:dieValue]}"
-  p @player
 end
 
 get '/exit' do
