@@ -9,7 +9,6 @@ require 'pg' if settings.production?
 require_relative "./app/routes"
 
 APP_ROOT = Pathname.new(File.expand_path(File.join(File.dirname(__FILE__), '.')))
-p APP_ROOT
 VIEW_PATH = APP_ROOT.join('app','views').to_s
 PUBLIC_PATH = APP_ROOT.join('public').to_s
 PROJECT = File.basename(File.expand_path("."))
@@ -21,7 +20,7 @@ configure do
 end
 
 if settings.production?
-  set :database, ENV["DATABASE_URL"] ||= "postgresql://localhost/social_media"
+  set :database, ENV["DATABASE_URL"] ||= "postgresql://localhost/liars_dice"
 
 else
   adapter = 'sqlite3'

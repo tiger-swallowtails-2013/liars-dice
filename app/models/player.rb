@@ -16,4 +16,8 @@ class Player < ActiveRecord::Base
     (current_roll.to_s =~ match).nil? ? self.bullshit = true : self.bullshit = false
   end
 
+  def roll
+    self.current_roll = ""
+    6.times {self.current_roll << rand(6) + 1}
+  end
 end
