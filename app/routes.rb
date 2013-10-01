@@ -15,7 +15,7 @@ post '/play' do
   @player = Player.create(params)
   set_player_session(@player.id)
   @player.roll
-  @player.game = Game.create()
+  @player.game = Game.create
   erb :play
 end
 

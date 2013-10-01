@@ -5,7 +5,7 @@ class Player < ActiveRecord::Base
 
   def roll
     rolls = []
-    6.times {rolls << rand(6) + 1}
+    self.number_of_dice.times {rolls << rand(6) + 1}
     self.current_roll = rolls.sort.join
   end
 
