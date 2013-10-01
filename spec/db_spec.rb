@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'rack/test'
 require 'rspec'
+set environment: :test
 require_relative '../config'
 
 def app
