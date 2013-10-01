@@ -1,5 +1,6 @@
+$LOAD_PATH << "."
 require 'sinatra/activerecord/rake'
-require_relative './config'
+require 'config'
 
 # Use the following to control with environment is set
 # RACK_ENV=test rake db:create

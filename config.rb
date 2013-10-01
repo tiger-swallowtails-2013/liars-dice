@@ -6,6 +6,7 @@ require './app/models/player'
 require 'tux' unless settings.production?
 require 'sqlite3' unless settings.production?
 require 'pg' if settings.production?
+require_relative "./app/routes"
 
 APP_ROOT = Pathname.new(File.expand_path(File.join(File.dirname(__FILE__), '.')))
 p APP_ROOT
