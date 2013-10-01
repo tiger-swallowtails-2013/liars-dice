@@ -24,6 +24,5 @@ class Player < ActiveRecord::Base
       match = /[#{current_claim[2]}]{#{current_claim[0]}}/
       (current_roll.to_s =~ match).nil? ? self.bullshit = true : self.bullshit = false
     end
-
   end
 end
