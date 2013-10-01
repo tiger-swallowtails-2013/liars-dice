@@ -1,29 +1,37 @@
-h1{
+h1 {
   text-align: center;
 }
 
-#main{
-  float: center;
+span {
+  text-align: center;
 }
 
-div{
-/* Internet Explorer 10 */
-display:-ms-flexbox;
--ms-flex-pack:center;
--ms-flex-align:center;
+.container {
+  position: relative;
+  width: 50%;
+  height: 300px;
+}
 
-/* Firefox */
-display:-moz-box;
--moz-box-pack:center;
--moz-box-align:center;
+.dice {
+  position: absolute;
+  left: 0;
+  width: 30%;
+  padding: 30px;
+  margin: 30px;
+}
 
-/* Safari, Opera, and Chrome */
-display:-webkit-box;
--webkit-box-pack:center;
--webkit-box-align:center;
+.form {
+  position: absolute;
+  right: 0;
+  width: 30%;
+  padding: 30px;
+  margin: 30px;
+}
 
-/* W3C */
-display:box;
-box-pack:center;
-box-align:center;
+.exit {
+  position: absolute;
+  bottom: 0;
+  width: 30%;
+  padding: 30px;
+  margin: 30px;
 }
