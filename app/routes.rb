@@ -10,13 +10,11 @@ get '/' do
   end
 end
 
-# DB is not getting written to - not sure why
 post '/play' do
   @player = Player.create(params)
   set_player_session(@player.id)
   @player.roll
   @player.game = Game.create
-
   erb :play
 end
 
