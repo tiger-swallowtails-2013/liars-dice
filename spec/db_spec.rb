@@ -43,6 +43,9 @@ describe 'game-database setup' do
       expect(player.number_of_dice).to eq(5)
     end
   end
+  it 'should initialize players with bullshit false' do
+    expect((Player.create).bullshit).to eq(false)
+  end
   it 'should only allow player to belong to one game' do
     p = Player.create
     g1 = Game.create
@@ -71,7 +74,11 @@ describe 'player claim' do
   it 'should not save to database if formatted incorrectly' do
     bad_claims = ["6x5","2x7","0x2","Fx3", "1x0", "true", "nil", "FTW"]
     bad_claims.each do |bad_claim|
-      expect(Player.create(:current_claim => bad_claim)).not_to be_persisted
+      expect(Player.create(current_claim: bad_claim)).not_to be_persisted
     end
+  end
+  it 'should be evaluated for bullshittyness before update' do
+    p1 = Player.create(current_claim: "5x2", current_roll: 12345)
+    expect(p1.bullshit).to eq(true)
   end
 end
