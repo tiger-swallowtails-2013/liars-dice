@@ -18,6 +18,12 @@ post '/play' do
   erb :play
 end
 
+post '/claim' do
+  @player = get_player
+  @player.current_claim = "#{params[:numDice]}x#{params[:dieValue]}"
+  p @player
+end
+
 get '/exit' do
   if session['player_id']
     player = get_player()
@@ -28,12 +34,11 @@ get '/exit' do
 end
 
 helpers do
-
   def set_player_session(player_id)
     session['player_id'] = player_id
   end
 
-  def get_player()
+  def get_player
     player_id = session['player_id']
     player = Player.find_by id: player_id
     return player

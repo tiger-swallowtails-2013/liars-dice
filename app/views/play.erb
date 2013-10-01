@@ -5,27 +5,27 @@
   <h3>Your dice rolls</h3>
   <div class="dice">
       <p id="one">
-        1's: <%= @player.current_roll[0] %>
+        1's: 
       </p>
       <p id="two">
-        2's: <%= @player.current_roll[1] %>
+        2's: 
       </p>
       <p id="three">
-        3's: <%= @player.current_roll[2] %>
+        3's:
       </p>
       <p id="four">
-        4's: <%= @player.current_roll[3] %>
+        4's: 
       </p>
       <p id="five">
-        5's: <%= @player.current_roll[4] %>
+        5's:
       </p>
       <p id="six">
-        6's: <%= @player.current_roll[5] %>
+        6's:
       </p>
   </div>
 
   <div class="form">
-    <form action="/play" method="post">
+    <form action="/claim" method="post">
       My claim:
       <p id="labels">
         Number of dice:
@@ -33,23 +33,24 @@
         Die value:
       </p>
       <p id="menus">
-        <select>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+        <select name="numDice">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
         </select>
         <br>
-        <select>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
+        <select name="dieValue">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
         </select>'s
       </p>
+      <input type="submit" value="Submit bid">
     </form>
   </div>
 
