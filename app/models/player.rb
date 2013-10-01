@@ -3,6 +3,11 @@ class Player < ActiveRecord::Base
   validate :claim_format
   after_save :check_lie
 
+  def roll
+    self.current_roll = ""
+    6.times {self.current_roll << rand(6) + 1}
+  end
+
   private
 
   def claim_format
@@ -14,10 +19,5 @@ class Player < ActiveRecord::Base
   def check_lie
     match = /[#{current_claim[2]}]{#{current_claim[0]}}/
     (current_roll.to_s =~ match).nil? ? self.bullshit = true : self.bullshit = false
-  end
-
-  def roll
-    self.current_roll = ""
-    6.times {self.current_roll << rand(6) + 1}
   end
 end
