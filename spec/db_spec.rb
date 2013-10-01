@@ -68,17 +68,21 @@ end
 
 describe 'player claim' do
   it 'should be in correct format and die-range, e.g. "2x5"' do
-    p1 = Player.create(:current_claim => "5x2")
+    p1 = Player.create(:current_claim => "5x2", current_roll: 22222)
     expect(p1).to be_persisted
   end
   it 'should not save to database if formatted incorrectly' do
     bad_claims = ["6x5","2x7","0x2","Fx3", "1x0", "true", "nil", "FTW"]
     bad_claims.each do |bad_claim|
-      expect(Player.create(current_claim: bad_claim)).not_to be_persisted
+      expect(Player.create(current_claim: bad_claim, current_roll: 12345)).not_to be_persisted
     end
   end
-  it 'should be evaluated for bullshittyness before update' do
-    p1 = Player.create(current_claim: "5x2", current_roll: 12345)
+  it 'should be evaluated for bullshittyness before save' do
+    p1 = Player.create(current_claim: "5x2", current_roll: 1)
     expect(p1.bullshit).to eq(true)
+    p2 = Player.create(current_claim: "1x2", current_roll: 2)
+    expect(p2.bullshit).to eq(false)
+    p3 = Player.create(current_claim: "2x1", current_roll: 1)
+    expect(p3.bullshit).to eq(true)
   end
 end
