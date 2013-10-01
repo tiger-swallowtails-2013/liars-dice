@@ -1,4 +1,3 @@
-
 enable :sessions
 
 get '/' do
@@ -11,10 +10,12 @@ get '/' do
   end
 end
 
+# DB is not getting written to - not sure why
 post '/play' do
   @player = Player.create(params)
-  @player_id = set_player_session(@player.id)
-  @game
+  set_player_session(@player.id)
+  @player.roll
+  @player.game = Game.create()
   erb :play
 end
 
