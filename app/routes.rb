@@ -54,7 +54,18 @@ post '/play' do
 end
 
 post '/bullshit' do
-
+  get_player
+  current_game
+  previous_player
+  if @player.bullshit
+    @previous_player.number_of_dice -= 1
+    @previous_player.save
+  else
+    number = @player.number_of_dice
+    @player.number_of_dice = number-1
+    @player.save
+  end
+  redirect '/play'
 end
 
 post '/claim' do
@@ -106,7 +117,8 @@ helpers do
 
   def previous_player
     current_game
-    @game.players.order('updated_at').last.id
+    @previous_player = @game.players.order('updated_at').last
+    @previous_player.id
   end
 
   def set_player_session(player_id)
