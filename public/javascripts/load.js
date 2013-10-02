@@ -22,19 +22,9 @@ $( document ).ready(function() {
 
   function print_dice(rolls_array){
     _.each(rolls_array, function(roll, i){
-      console.log("hi")
-      console.log(i)
       var diename = "#die" + (i + 1)
       $( diename ).text(roll)
     })
   }
-
-    // $( "#die1" ).text(rolls_array[0])
-    // $( "#die2" ).text(rolls_array[1])
-    // $( "#die3" ).text(rolls_array[2])
-    // $( "#die4" ).text(rolls_array[3])
-    // $( "#die5" ).text(rolls_array[4])
-
-
 
 });
