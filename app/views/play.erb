@@ -38,18 +38,18 @@
           <option value="6">6</option>
         </select>'s
       </p>
-      <input type="submit" value="Submit bid">
-    </form>
-  </div>
-
-  <div class="exit">
-    <form action="/exit" method="get">
-      <input type="submit" value="Quit Game">
+      <input type="submit" value="Submit bid" id="bid-btn" disabled>
     </form>
   </div>
 </div>
+
 <div class="roll">
   <input id="roll-btn" data-dice-count="<%=@player.number_of_dice%>" type="submit" value="Roll dice">
 </div>
 
+<div class="exit">
+  <form action="/exit" method="get">
+    <input type="submit" value="Quit Game">
+  </form>
+</div>
 

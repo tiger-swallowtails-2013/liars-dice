@@ -5,22 +5,17 @@ $( document ).ready(function() {
     var number_of_dice = $(this).data('dice-count')
     var rolls = roll_dice(number_of_dice);
     print_dice(rolls);
+    $("#bid-btn").removeAttr("disabled");
+    $("#roll-btn").attr("disabled", true);
+
+
   });
 
   function roll_dice(number_of_dice_to_roll) {
-    // def roll
-    //   rolls = []
-    //   self.number_of_dice.times {rolls << rand(6) + 1}
-    //   self.current_roll = rolls.sort.join
-    //   self.save
-    // end
-
     var rolls = []
     for (var i = 0; i < number_of_dice_to_roll; i++) {
       rolls[i] = Math.floor( Math.random() * 6 ) + 1;
     }
-    console.log(rolls)
-
     return rolls
 
   }
@@ -30,7 +25,6 @@ $( document ).ready(function() {
       console.log("hi")
       console.log(i)
       var diename = "#die" + (i + 1)
-      console.log(diename)
       $( diename ).text(roll)
     })
   }
