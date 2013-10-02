@@ -1,8 +1,17 @@
 <%if session[:player_id]%><a href="/wipe">CLEAR YOUR SESSION!!!</a> player: <%=session[:player_id]%>, game: <%=session[:game_id]%><%end%></br></br>
 
 
-
 Click to join a game:</br>
 <% Game.last(10).each do |game| %>
   <a href=/join/<%= game.id %>>join game <%= game.id %></a>, players: <%=game.players.all.count%></br>
 <% end %>
+
+<div class='login'>
+  <h3>
+    Enter your name and click the play button to join a game!
+  </h3>
+  <form action="/play" method="post">
+    <input type="text" name="name" placeholder="Enter your name">
+    <input type="submit" value="Play Liars Dice!">
+  </form>
+</div>

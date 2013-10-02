@@ -1,5 +1,30 @@
+body {
+  background-image: url('background.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-color: black;
+  background-position: top center;
+  color: black;
+}
+
 h1 {
   text-align: center;
+}
+
+.play {
+  position: relative;
+  top: 200px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login {
+  position: relative;
+  top: 300px;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .container {

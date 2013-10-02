@@ -7,26 +7,27 @@ Players:</br>
     <form action="/play" method="get">
       <input type="submit" value="Refesh">
     </form>
-<p>
-  Ahoy me hearty! <%= @player.name %>, ye must roll yer dice an make yer claim before yer made to walk the plank to visit Davy Jones' Locker!  Savvy?
-</p>
-<div class="container">
-  <h3>Your dice rolls</h3>
-  <div class="dice">
-      <span id="die1"></span>
-      <span id="die2"></span>
-      <span id="die3"></span>
-      <span id="die4"></span>
-      <span id="die5"></span>
+<div class="play">
+  <h4>
+    Ahoy me hearty! <%= @player.name %>, ye must roll yer dice an make yer claim before yer made to walk the plank to visit Davy Jones' Locker!  Savvy?
+  </h4>
+  <div class="container">
+    <div class="dice">
+        <h3>Your dice rolls</h3>
+        <span id="die1"></span>
+        <span id="die2"></span>
+        <span id="die3"></span>
+        <span id="die4"></span>
+        <span id="die5"></span>
+    </div>
 
-  </div>
 <%if i_am_the_current_player? %>
   <%= erb :_my_turn%>
 <%end%>
 
-<div class="exit">
-  <form action="/exit" method="get">
-    <input type="submit" value="Quit Game">
-  </form>
+  <div class="exit">
+    <form action="/exit" method="get">
+      <input type="submit" value="Quit Game">
+    </form>
+  </div>
 </div>
-
