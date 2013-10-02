@@ -48,14 +48,20 @@ helpers do
   def check_bullshit
     get_previous_player
     if @previous_player.bullshit
-      n = @previous_player.number_of_dice
-      @previous_player.number_of_dice = n-1
-      @previous_player.save
+      lose_one_die(@previous_player)
     else
-      n = @player.number_of_dice
-      @player.number_of_dice = n-1
-      @player.save
+      lose_one_die(@player)
     end
+  end
+
+  def lose_one_die(player)
+    less_dice = player.number_of_dice - 1
+    player.update_attribute(:number_of_dice, less_dice)
+    game_over(player) if less_dice <= 0
+  end
+
+  def game_over(player)
+    player.destroy
   end
 
   def make_roll
