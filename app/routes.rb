@@ -3,17 +3,15 @@ enable :sessions
 
 get '/' do
   # if session['player_id']
-  #   @player = get_player()
-  #   @game = get_game(@player)
-  #   erb :play
+  #   get_player
+  #   get_current_game
   # else
     erb :index
   # end
 end
 
 get '/join/:id' do
-  @game_id = params[:id]
-  session[:game_id] = @game_id
+  set_game_session
   erb :join
 end
 
@@ -42,25 +40,15 @@ post '/rolls' do
 end
 
 post '/claim' do
-  @player = get_player
-  @player.current_claim = "#{params[:numDice]}x#{params[:dieValue]}"
-  @player.check_lie
-  @player.save
+  get_player
+  make_claim
   redirect '/play'
 end
 
 post '/bullshit' do
   get_player
   get_current_game
-  get_previous_player
-  if @player.bullshit
-    @previous_player.number_of_dice -= 1
-    @previous_player.save
-  else
-    number = @player.number_of_dice
-    @player.number_of_dice = number-1
-    @player.save
-  end
+  check_bullshit
   redirect '/play'
 end
 
@@ -76,5 +64,5 @@ end
 get '/wipe' do
   session.clear
   Game.create
-  erb :wipe
+  redirect 'wipe'
 end

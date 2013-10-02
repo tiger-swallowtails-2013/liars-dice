@@ -8,6 +8,10 @@ helpers do
     session['player_id'] = @player.id
   end
 
+  def set_game_session
+    @game_id = (session[:game_id] = params[:id])
+  end
+
   def get_current_game
     @game = Game.find_by(id: session[:game_id])
   end
@@ -30,12 +34,27 @@ helpers do
   end
 
   def get_previous_player
-    get_current_game
     @previous_player = @game.players.order('updated_at').last
     #@previous_player.id
   end
 
-  def get_game(player)
-    player.game_id
+  def check_bullshit
+    get_previous_player
+    if @previous_player.bullshit
+      n = @previous_player.number_of_dice
+      @previous_player.number_of_dice = n-1
+      @previous_player.save
+    else
+      n = @player.number_of_dice
+      @player.number_of_dice = n-1
+      @player.save
+    end
   end
+
+  def make_claim
+    @player.current_claim = "#{params[:numDice]}x#{params[:dieValue]}"
+    @player.check_lie
+    @player.save
+  end
+
 end
