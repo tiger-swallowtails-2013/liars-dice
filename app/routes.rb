@@ -11,61 +11,33 @@ get '/' do
   # end
 end
 
-get '/wipe' do
-  session.clear
-  Game.create
-  erb :wipe
-end
-
 get '/join/:id' do
   @game_id = params[:id]
   session[:game_id] = @game_id
-  p @game_id
   erb :join
+end
+
+post '/play' do
+  unless session[:player_id] #&& session[:game_id]
+    get_current_game
+    make_new_player
+    set_player_session
+    add_player_to_game
+  end
+  redirect '/play'
+end
+
+get '/play' do
+  get_player # from session
+  get_current_game
+  get_current_player
+  erb :play
 end
 
 post '/rolls' do
   get_player
   @player.current_roll = params['data'].join('')
   @player.save
-  p @player
-  redirect '/play'
-end
-
-get '/play' do
-  get_player
-  current_game
-  @current_player_boolean = am_i_the_current_player?
-  @current_player = current_player
-  #@player.roll ##
-  erb :play
-end
-
-post '/play' do
-  unless session[:player_id] && session[:game_id]
-    new_player_and_session
-    add_player_to_game
-  end
-  get_player
-  current_game
-  @current_player_boolean = am_i_the_current_player?
-  @current_player = current_player
-  #@player.roll ##
-  erb :play
-end
-
-post '/bullshit' do
-  get_player
-  current_game
-  previous_player
-  if @player.bullshit
-    @previous_player.number_of_dice -= 1
-    @previous_player.save
-  else
-    number = @player.number_of_dice
-    @player.number_of_dice = number-1
-    @player.save
-  end
   redirect '/play'
 end
 
@@ -77,6 +49,21 @@ post '/claim' do
   redirect '/play'
 end
 
+post '/bullshit' do
+  get_player
+  get_current_game
+  get_previous_player
+  if @player.bullshit
+    @previous_player.number_of_dice -= 1
+    @previous_player.save
+  else
+    number = @player.number_of_dice
+    @player.number_of_dice = number-1
+    @player.save
+  end
+  redirect '/play'
+end
+
 get '/exit' do
   if session['player_id']
     get_player
@@ -84,4 +71,10 @@ get '/exit' do
     session.clear
   end
   redirect '/'
+end
+
+get '/wipe' do
+  session.clear
+  Game.create
+  erb :wipe
 end

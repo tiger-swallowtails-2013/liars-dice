@@ -4,7 +4,7 @@ Players:</br>
   <%=player.name%>: <%=player.number_of_dice%> dice.<%if @current_player == player %><%="***"%><%end%></br>
 <%end%>
 </br>
-    <form action="/play" method="post">
+    <form action="/play" method="get">
       <input type="submit" value="Refesh">
     </form>
 <p>
@@ -20,8 +20,8 @@ Players:</br>
       <span id="die5"></span>
 
   </div>
-<%if @current_player_boolean %>
-<%= erb :_my_turn%>
+<%if i_am_the_current_player? %>
+  <%= erb :_my_turn%>
 <%end%>
 
 <div class="exit">
