@@ -23,6 +23,12 @@ get '/join/:id' do
   erb :join
 end
 
+post '/rolls' do
+  p params
+  #get_player
+  #@player.roll = params[:rolls]
+end
+
 get '/play' do
   get_player
   current_game
