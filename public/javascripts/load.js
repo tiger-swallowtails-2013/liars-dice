@@ -8,7 +8,7 @@ $( document ).ready(function() {
     $("#bid-btn").removeAttr("disabled");
     $("#roll-btn").attr("disabled", true)
     console.log(rolls)
-    $.post('/rolls', rolls)
+    $.post('/rolls', { data: rolls } )
   });
 
   function roll_dice(number_of_dice_to_roll) {

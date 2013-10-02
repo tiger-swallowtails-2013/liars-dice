@@ -24,9 +24,11 @@ get '/join/:id' do
 end
 
 post '/rolls' do
-  p params
-  #get_player
-  #@player.roll = params[:rolls]
+  get_player
+  @player.current_roll = params['data'].join('')
+  @player.save
+  p @player
+  redirect '/play'
 end
 
 get '/play' do
@@ -34,7 +36,7 @@ get '/play' do
   current_game
   @current_player_boolean = am_i_the_current_player?
   @current_player = current_player
-  @player.roll ##
+  #@player.roll ##
   erb :play
 end
 
@@ -47,7 +49,7 @@ post '/play' do
   current_game
   @current_player_boolean = am_i_the_current_player?
   @current_player = current_player
-  @player.roll ##
+  #@player.roll ##
   erb :play
 end
 

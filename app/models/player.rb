@@ -3,12 +3,12 @@ class Player < ActiveRecord::Base
   # validate :claim_format
   # after_save :check_lie
 
-  def roll
-    rolls = []
-    self.number_of_dice.times {rolls << rand(6) + 1}
-    self.current_roll = rolls.sort.join
-    self.save
-  end
+  # def roll
+  #   rolls = []
+  #   self.number_of_dice.times {rolls << rand(6) + 1}
+  #   self.current_roll = rolls.sort.join
+  #   self.save
+  # end
 
   #private
 
