@@ -3,12 +3,12 @@ class Player < ActiveRecord::Base
   # validate :claim_format
   # after_save :check_lie
 
-  def roll
-    rolls = []
-    self.number_of_dice.times {rolls << rand(6) + 1}
-    self.current_roll = rolls.sort.join
-    self.save
-  end
+  # def roll
+  #   rolls = []
+  #   self.number_of_dice.times {rolls << rand(6) + 1}
+  #   self.current_roll = rolls.sort.join
+  #   self.save
+  # end
 
   #private
 
@@ -20,10 +20,11 @@ class Player < ActiveRecord::Base
   #   end
   # end
 
-  # def check_lie
-  #   unless current_claim == nil
-  #     match = /[#{current_claim[2]}]{#{current_claim[0]}}/
-  #     (current_roll.to_s =~ match).nil? ? self.bullshit = true : self.bullshit = false
-  #   end
-  # end
+  def check_lie
+    unless current_claim == nil
+      match = /[#{current_claim[2]}]{#{current_claim[0]}}/
+      (current_roll.to_s =~ match).nil? ? self.bullshit = true : self.bullshit = false
+      self.save #necessary?
+    end
+  end
 end

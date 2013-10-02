@@ -1,49 +1,68 @@
+require_relative './game_logic_helper'
 enable :sessions
 
 get '/' do
-  if session['player_id']
-    @player = get_player()
-    @game = get_game(@player)
-    erb :play
-  else
+  # if session['player_id']
+  #   get_player
+  #   get_current_game
+  # else
     erb :index
-  end
+  # end
+end
+
+get '/join/:id' do
+  set_game_session
+  erb :join
 end
 
 post '/play' do
-  @player = Player.create(params)
-  set_player_session(@player.id)
-  @player.roll
-  @player.game = Game.create
+  unless session[:player_id] #&& session[:game_id]
+    get_current_game
+    make_new_player
+    set_player_session
+    add_player_to_game
+  end
+  redirect '/play'
+end
+
+get '/play' do
+  get_player # from session
+  get_current_game
+  get_current_player
   erb :play
 end
 
+post '/rolls' do
+  get_player
+  @player.current_roll = params['data'].join('')
+  @player.save
+  redirect '/play'
+end
+
 post '/claim' do
-  @player = get_player
-  @player.current_claim = "#{params[:numDice]}x#{params[:dieValue]}"
+  get_player
+  make_claim
+  redirect '/play'
+end
+
+post '/bullshit' do
+  get_player
+  get_current_game
+  check_bullshit
+  redirect '/play'
 end
 
 get '/exit' do
   if session['player_id']
-    player = get_player()
-    player.destroy
+    get_player
+    @player.destroy
     session.clear
   end
   redirect '/'
 end
 
-helpers do
-  def set_player_session(player_id)
-    session['player_id'] = player_id
-  end
-
-  def get_player
-    player_id = session['player_id']
-    player = Player.find_by id: player_id
-    return player
-  end
-
-  def get_game(player)
-    return player.game_id
-  end
+get '/wipe' do
+  session.clear
+  Game.create
+  redirect 'wipe'
 end

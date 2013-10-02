@@ -6,9 +6,9 @@ $( document ).ready(function() {
     var rolls = roll_dice(number_of_dice);
     print_dice(rolls);
     $("#bid-btn").removeAttr("disabled");
-    $("#roll-btn").attr("disabled", true);
-
-
+    $("#roll-btn").attr("disabled", true)
+    console.log(rolls)
+    $.post('/rolls', { data: rolls } )
   });
 
   function roll_dice(number_of_dice_to_roll) {
