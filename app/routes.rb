@@ -16,17 +16,12 @@ get '/join/:id' do
 end
 
 post '/play' do
-  unless session[:player_id] #&& session[:game_id]
-    get_current_game
-    make_new_player
-    set_player_session
-    add_player_to_game
-  end
+  setup_game
   redirect '/play'
 end
 
 get '/play' do
-  get_player # from session
+  get_player
   get_current_game
   get_current_player
   erb :play
@@ -34,8 +29,7 @@ end
 
 post '/rolls' do
   get_player
-  @player.current_roll = params['data'].join('')
-  @player.save
+  make_roll
   redirect '/play'
 end
 
@@ -53,11 +47,7 @@ post '/bullshit' do
 end
 
 get '/exit' do
-  if session['player_id']
-    get_player
-    @player.destroy
-    session.clear
-  end
+  destroy_player
   redirect '/'
 end
 
