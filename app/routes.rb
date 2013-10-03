@@ -21,10 +21,14 @@ post '/play' do
 end
 
 get '/play' do
-  get_player
-  get_current_game
-  get_current_player
-  erb :play
+  if winner?
+    rediret '/'
+  else
+    get_player
+    get_current_game
+    get_current_player
+    erb :play
+  end
 end
 
 post '/rolls' do
