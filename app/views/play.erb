@@ -1,10 +1,9 @@
 <%if winner? %></br></br> WE HAVE A WINNER!!!! (or maybe you're just the only person in this game at the moment...) </br></br><%end%>
 
 Welcome to game <%=@game.id%>!</br>
-Players:</br>
-<%@game.players.all.each do |player|%>
-  <%=player.name%>: <%=player.number_of_dice%> dice.<%if @current_player == player %><%="***"%><%end%></br>
-<%end%>
+<div class="players">
+  <%= erb :_player_queue %>
+</div>
 </br>
 
 <div class="play">

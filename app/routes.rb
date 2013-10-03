@@ -33,7 +33,12 @@ get '/play' do
    redirect '/winner'
   else
     erb :play
-  #end
+  end
+end
+
+post '/refresh_check' do
+  get_current_game
+  erb :_player_queue, :layout => false
 end
 
 post '/rolls' do
