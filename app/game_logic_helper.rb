@@ -1,7 +1,7 @@
 helpers do
 
   def create_new_game
-    @game = Game.new(turns: [])
+    @game = Game.create(turns: [])
   end
 
   def make_new_player
@@ -9,11 +9,11 @@ helpers do
   end
 
   def set_player_session
-    session['player_id'] = @player.id
+    session[:player_id] = @player.id
   end
 
   def set_game_session
-    @game_id = (session[:game_id] = params[:id])
+    @game_id = (session[:game_id] = params[:id].to_i)
   end
 
   def setup_game_for_player
@@ -32,6 +32,7 @@ helpers do
   def add_player_to_game
     @game.players << @player
     @game.turns << @player.id
+    @game.save
   end
 
   def get_player
@@ -56,6 +57,7 @@ helpers do
 
   def update_turn_order
     @game.turns = @game.turns.rotate
+    @game.save
   end
 
   def make_roll
@@ -87,6 +89,7 @@ helpers do
   def game_over(player)
     index = @game.turns.index(player.id)
     @game.turns.slice!(index)
+    @game.save
   end
 
   def winner?
@@ -101,6 +104,7 @@ helpers do
     if session['player_id']
       get_player
       @player.destroy
+      @player.save
       session.clear
     end
   end

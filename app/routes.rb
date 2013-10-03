@@ -44,6 +44,7 @@ end
 
 post '/claim' do
   get_player
+  get_current_game
   make_claim
   update_turn_order
   redirect '/play'
@@ -68,5 +69,5 @@ end
 get '/wipe' do
   session.clear
   create_new_game
-  redirect '/wipe'
+  redirect '/'
 end
