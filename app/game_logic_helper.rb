@@ -93,7 +93,7 @@ helpers do
   end
 
   def winner?
-    @game.turns.count == 1
+    (@game.turns.count == 1 && !@player.current_roll.nil?)
   end
 
   def i_am_the_winner?
@@ -101,11 +101,11 @@ helpers do
   end
 
   def destroy_player
-    if session['player_id']
+    if session[:player_id]
       get_player
+      session.clear
       @player.destroy
       @player.save
-      session.clear
     end
   end
   

@@ -14,7 +14,30 @@ function print_dice(rolls_array){
   })
 }
 
+function play_page_refresh(){
+  if ($('.play').length > 0){
+    setInterval(function(){ 
+      $.ajax({
+        type: 'post',
+        url: '/refresh_check'
+        //data:
+      }).done(function(server_data) {
+        console.log("SUCCESS:" + server_data);
+        $(".players").html(server_data["waiting"]);
+        if (server_data["current"]){
+          $(".test").html(server_data["current"]);
+        }
+      }).fail(function(){
+        console.log('fail');
+      });
+
+    }, 5000)
+  }
+}
+
 $( document ).ready(function() {
+  play_page_refresh()
+
   $( "#roll-btn" ).on( "click", function() {
     var number_of_dice = $(this).data('dice-count')
     var rolls = roll_dice(number_of_dice);
