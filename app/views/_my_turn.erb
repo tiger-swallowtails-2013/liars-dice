@@ -1,40 +1,44 @@
- <div class="form">
-      <form action="/claim" method="post">
-        Your claim:
-        <p id="labels">
-          Number of dice:
-          <br>
-          Die value:
-        </p>
-        <p id="menus">
-          <select name="numDice">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-          <br>
-          <select name="dieValue">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-          </select>'s
-        </p>
-        <input type="submit" value="Submit bid" id="bid-btn" disabled>
-      </form>
-    </div>
-  </div>
-
+<form action="/bullshit" method="post">
+  <input type="submit" value="Bullshit!">
+</form>
+<div class="dice">
+  <h3>Your dice rolls</h3>
+  <img id="die1" src=''><img id="die2" src=''><img id="die3" src=''><img id="die4" src=''><img id="die5" src=''>
   <div class="roll">
     <input id="roll-btn" data-dice-count="<%=@player.number_of_dice%>" type="submit" value="Roll dice">
   </div>
-
-</br>
-    <form action="/bullshit" method="post">
-      <input type="submit" value="Bullshit!">
-    </form>
-<p>
+</div>
+<div class="form">
+  <form action="/claim" method="post">
+    Your claim:
+    <p id="labels">
+      Number of dice:
+      <br>
+      Die value:
+    </p>
+    <p id="menus">
+      <select name="numDice">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
+      <br>
+      <select name="dieValue">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>'s
+    <input type="submit" value="Submit bid" id="bid-btn" disabled>
+    </p>
+  </form>
+</div>

@@ -1,7 +1,7 @@
-<%if session[:player_id]%><a href="/wipe">CLEAR YOUR SESSION!!!</a> player: <%=session[:player_id]%>, game: <%=session[:game_id]%><%end%></br></br>
 
-
-Click to join a game:</br>
-<% Game.last(10).each do |game| %>
-  <a href=/join/<%= game.id %>>join game <%= game.id %></a>, players: <%=game.players.all.count%></br>
-<% end %>
+<div class="login">
+  Click to join a game:</br>
+  <% Game.last(10).each do |game| %>
+    <a href=/join/<%= game.id %>>join game <%= game.id %></a>, players: <%=game.players.all.count%></br>
+  <% end %>
+</div

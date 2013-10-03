@@ -31,6 +31,7 @@ get '/play' do
   #else
     get_player
     get_current_game
+    get_previous_player
     get_current_player
     erb :play
   #end
