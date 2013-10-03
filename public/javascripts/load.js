@@ -15,11 +15,20 @@ function print_dice(rolls_array){
 }
 
 function play_page_refresh(){
-  if ($('.play').length > 0)
-  {
-    setTimeout(function () { 
-      location.reload();
-    }, 3000)
+  if ($('.play').length > 0){
+    setInterval(function(){ 
+      $.ajax({
+        type: 'post',
+        url: '/refresh_check'
+        //data:
+      }).done(function(server_data) {
+        console.log("SUCCESS -- server returned: " + server_data);
+        $(".players").html(server_data); 
+      }).fail(function(){
+        console.log('fail');
+      });
+
+    }, 5000)
   }
 }
 
