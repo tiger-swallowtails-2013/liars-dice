@@ -14,7 +14,18 @@ function print_dice(rolls_array){
   })
 }
 
+function play_page_refresh(){
+  if ($('.play').length > 0)
+  {
+    setTimeout(function () { 
+      location.reload();
+    }, 3000)
+  }
+}
+
 $( document ).ready(function() {
+  play_page_refresh()
+
   $( "#roll-btn" ).on( "click", function() {
     var number_of_dice = $(this).data('dice-count')
     var rolls = roll_dice(number_of_dice);
