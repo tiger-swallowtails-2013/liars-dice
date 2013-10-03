@@ -1,3 +1,5 @@
+<%if winner? %></br></br> WE HAVE A WINNER!!!! (or maybe you're just the only person in this game at the moment...) </br></br><%end%>
+
 Welcome to game <%=@game.id%>!</br>
 Players:</br>
 <%@game.players.all.each do |player|%>
