@@ -22,7 +22,7 @@ end
 
 get '/play' do
   if winner?
-    rediret '/'
+    redirect '/winner'
   else
     get_player
     get_current_game
@@ -48,6 +48,10 @@ post '/bullshit' do
   get_current_game
   check_bullshit!
   redirect '/play'
+end
+
+get '/winner' do
+  "WINNER"
 end
 
 get '/exit' do
