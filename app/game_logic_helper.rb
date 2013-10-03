@@ -45,7 +45,18 @@ helpers do
     @previous_player = @game.players.order('updated_at').last
   end
 
-  def check_bullshit
+  def make_roll
+    @player.current_roll = params['data'].join('')
+    @player.save
+  end
+
+  def make_claim
+    @player.current_claim = "#{params[:numDice]}x#{params[:dieValue]}"
+    @player.check_lie
+    @player.save
+  end
+
+  def check_bullshit!
     get_previous_player
     if @previous_player.bullshit
       lose_one_die(@previous_player)
@@ -61,18 +72,12 @@ helpers do
   end
 
   def game_over(player)
-    player.destroy
+    player.update_attribute(:game_id, nil)
+    winner?
   end
 
-  def make_roll
-    @player.current_roll = params['data'].join('')
-    @player.save
-  end
-
-  def make_claim
-    @player.current_claim = "#{params[:numDice]}x#{params[:dieValue]}"
-    @player.check_lie
-    @player.save
+  def winner?
+    @winner = (@game.players.count == 1)
   end
 
   def destroy_player

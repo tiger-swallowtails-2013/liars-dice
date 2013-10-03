@@ -42,7 +42,7 @@ end
 post '/bullshit' do
   get_player
   get_current_game
-  check_bullshit
+  check_bullshit!
   redirect '/play'
 end
 
@@ -54,5 +54,5 @@ end
 get '/wipe' do
   session.clear
   Game.create
-  redirect 'wipe'
+  redirect '/wipe'
 end
