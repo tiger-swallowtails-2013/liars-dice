@@ -73,11 +73,10 @@ helpers do
 
   def game_over(player)
     player.update_attribute(:game_id, nil)
-    winner?
   end
 
   def winner?
-    @winner = (@game.players.count == 1)
+    @game.players.count == 1
   end
 
   def destroy_player
