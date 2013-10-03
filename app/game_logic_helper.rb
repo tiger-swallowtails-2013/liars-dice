@@ -1,5 +1,9 @@
 helpers do
 
+  def create_new_game
+    @game = Game.new(turns: [])
+  end
+
   def make_new_player
     @player = Player.create(name: params[:name])
   end
@@ -12,7 +16,7 @@ helpers do
     @game_id = (session[:game_id] = params[:id])
   end
 
-  def setup_game
+  def setup_game_for_player
     unless session[:player_id]
       get_current_game
       make_new_player
@@ -27,6 +31,7 @@ helpers do
 
   def add_player_to_game
     @game.players << @player
+    @game.turns << @player.id
   end
 
   def get_player
@@ -34,15 +39,23 @@ helpers do
   end
 
   def i_am_the_current_player?
-    session[:player_id] == get_current_player.id
+    session[:player_id] == get_current_player_id
+  end
+
+  def get_current_player_id
+    @game.turns[0]
   end
 
   def get_current_player
-    @current_player = @game.players.order('updated_at').first
+    @current_player = Player.find_by(id: get_current_player_id)
   end
 
   def get_previous_player
-    @previous_player = @game.players.order('updated_at').last
+    @previous_player = Player.find_by(id: @game.turns.last)
+  end
+
+  def update_turn_order
+    @game.turns = @game.turns.rotate
   end
 
   def make_roll
@@ -72,11 +85,16 @@ helpers do
   end
 
   def game_over(player)
-    player.update_attribute(:game_id, nil)
+    index = @game.turns.index(player.id)
+    @game.turns.slice!(index)
   end
 
   def winner?
-    @game.players.count == 1
+    @game.turns.count == 1
+  end
+
+  def i_am_the_winner?
+    true if winner? && (session[:player_id] == @game.turns.first)
   end
 
   def destroy_player
