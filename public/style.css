@@ -1,7 +1,7 @@
 body {
   background-image: url('background.png');
   background-repeat: no-repeat;
-  background-attachment: fixed; 
+  background-attachment: scroll; 
   background-color: black;
   background-position: top center;
   color: black;
@@ -9,6 +9,14 @@ body {
 
 h1 {
   text-align: center;
+}
+
+
+.instr {
+  position: fixed;
+  width: 150px;
+  top: 50px;
+  left: 200px;
 }
 
 .play {
@@ -20,6 +28,7 @@ h1 {
 }
 
 .login {
+
   position: relative;
   top: 300px;
   width: 60%;
@@ -29,16 +38,16 @@ h1 {
 
 .container {
   position: relative;
-  width: 50%;
+  width: 70%;
   height: 300px;
 }
 
 .dice {
   position: absolute;
   left: 0;
-  width: 30%;
+  width: 300px;
   height: 100px;
-  margin: 30px;
+  margin: 10px;
 }
 
 #one, #two, #three, #four, #five, #six {
@@ -53,8 +62,7 @@ h1 {
   right: 0;
   width: 40%;
   height: 100px;
-  padding: 20px;
-  margin: 30px;
+  margin: 10px;
 }
 
 #labels {
@@ -74,11 +82,10 @@ h1 {
 }
 
 .exit {
-  position: absolute;
-  bottom: 0;
-  left: 100px;
-  width: 30%;
-  padding: 30px;
-  margin: 30px;
+  position: relative;
+  top: 200px;
+  width: 10%;
+  margin-left: auto;
+  margin-right: auto;
 }
 

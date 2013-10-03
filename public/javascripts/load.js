@@ -10,7 +10,7 @@ function print_dice(rolls_array){
   var diename;
   _.each(rolls_array, function(roll, i){
     diename = "#die" + (i + 1)
-    $( diename ).text(roll)
+    $( diename ).attr("src", "die" + roll + "_render.png")
   })
 }
 

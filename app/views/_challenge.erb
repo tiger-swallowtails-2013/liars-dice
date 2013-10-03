@@ -1,0 +1,8 @@
+<div class="challenge">
+  <h4>
+    This is <%= @player.name %>'s claim:
+  </h4>
+  <% unless @previous_player.current_claim.nil? %>
+  <%= @previous_player.current_claim.each {|x| print x + " "} %>
+  <% end %>
+</div>
