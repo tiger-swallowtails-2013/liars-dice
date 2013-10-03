@@ -93,7 +93,7 @@ helpers do
   end
 
   def winner?
-    @game.turns.count == 1
+    (@game.turns.count == 1 && !@player.current_roll.nil?)
   end
 
   def i_am_the_winner?
