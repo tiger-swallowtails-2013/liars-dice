@@ -22,8 +22,11 @@ function play_page_refresh(){
         url: '/refresh_check'
         //data:
       }).done(function(server_data) {
-        console.log("SUCCESS -- server returned: " + server_data);
-        $(".players").html(server_data); 
+        console.log("SUCCESS:" + server_data);
+        $(".players").html(server_data["waiting"]);
+        if (server_data["current"]){
+          $(".test").html(server_data["current"]);
+        }
       }).fail(function(){
         console.log('fail');
       });

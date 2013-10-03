@@ -1,4 +1,5 @@
 require_relative './game_logic_helper'
+require 'sinatra/json'
 enable :sessions
 
 get '/' do
@@ -36,9 +37,26 @@ get '/play' do
   end
 end
 
+get '/test.json' do
+  players = Player.all
+  json players
+end
+
 post '/refresh_check' do
+  get_player
   get_current_game
-  erb :_player_queue, :layout => false
+  get_current_player
+  results_hash = {}
+  results_hash["waiting"] = erb :_player_queue, :layout => false
+  if i_am_the_current_player?
+    results_hash["current"] = "<h1>Test Successful</h1>"
+    # results_hash["current"] = erb :_my_turn, :layout => false
+  end
+  # p results_hash
+  # p json results_hash
+  # p session
+  json results_hash
+
 end
 
 post '/rolls' do
