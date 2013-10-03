@@ -26,12 +26,12 @@ post '/play' do
 end
 
 get '/play' do
-  #if i_am_the_winner?
-  #  redirect '/winner' #bounces player 1
-  #else
-    get_player
-    get_current_game
-    get_current_player
+  get_player
+  get_current_game
+  get_current_player
+  if i_am_the_winner?
+   redirect '/winner'
+  else
     erb :play
   #end
 end
