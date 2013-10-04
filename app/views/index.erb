@@ -1,5 +1,5 @@
 
-<div class="login">
+<div class="login" align="center">
   Click to join a game:<br>
   <% Game.last(10).each do |game| %>
     <a href=/join/<%= game.id %>>join game <%= game.id %></a>, players: <%=game.players.all.count%>
