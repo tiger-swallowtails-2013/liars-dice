@@ -77,7 +77,7 @@ post '/bullshit' do
 end
 
 get '/winner' do
-  "YOU ARE THE WINNER"
+  erb :winner
 end
 
 get '/exit' do
