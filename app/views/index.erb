@@ -1,7 +1,13 @@
 
 <div class="login">
-  Click to join a game:</br>
+  Click to join a game:<br>
   <% Game.last(10).each do |game| %>
-    <a href=/join/<%= game.id %>>join game <%= game.id %></a>, players: <%=game.players.all.count%></br>
+    <a href=/join/<%= game.id %>>join game <%= game.id %></a>, players: <%=game.players.all.count%>
+    <br>
   <% end %>
+  <br>
+  Or create a new game:<br>
+  <form action="/wipe" method="get">
+    <input type="image" src="button_new.jpg">
+  </form>
 </div
