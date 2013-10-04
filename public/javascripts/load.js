@@ -35,8 +35,27 @@ function play_page_refresh(){
   }
 }
 
+// function is_bid_higher(){
+
+// }
+
 $( document ).ready(function() {
   play_page_refresh()
+
+  // $("#bid-btn").on("click", function(event) {
+  //   event.preventDefault();
+  //   $.ajax({
+  //       type: 'post',
+  //       url: '/claim',
+  //       data: $("submitbid").serialize()
+  //     }).done(function(server_data) {
+  //       console.log("bidSUCCESS:" + server_data);
+  //       $(".players").html(server_data["waiting"]);
+  //       }).fail(function(server_data){
+  //         console.log("fail" + server_data);
+  //       })
+  //    console.log("click")
+  // })
 
   $( "#roll-btn" ).on( "click", function() {
     var number_of_dice = $(this).data('dice-count')

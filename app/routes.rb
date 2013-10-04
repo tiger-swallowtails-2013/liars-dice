@@ -64,9 +64,15 @@ end
 post '/claim' do
   get_player
   get_current_game
+  get_previous_player
   make_claim
   update_turn_order
-  redirect '/play'
+  # results_hash = {}
+  # if (data[0] > @previous_player.current_claim[0]) || (data[1] > @previous_player.current_claim[1])
+  #   results_hash["waiting"] = erb :play, :layout => false
+  #   json results_hash
+  # end
+  # redirect '/play'
 end
 
 post '/bullshit' do
