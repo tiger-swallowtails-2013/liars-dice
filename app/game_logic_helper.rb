@@ -66,7 +66,7 @@ helpers do
   end
 
   def make_claim
-    @player.current_claim = "#{params[:numDice]}x#{params[:dieValue]}"
+    @player.current_claim = "#{params[:numDice]}#{params[:dieValue]}"
     @player.check_lie
     @player.save
   end
@@ -107,6 +107,12 @@ helpers do
       @player.destroy
       @player.save
     end
+  end
+
+  def print_claim(claim)
+    result = "#{claim[0]} #{claim[1]}"
+    result << "'s" if claim[0].to_i > 1
+    result
   end
   
 end

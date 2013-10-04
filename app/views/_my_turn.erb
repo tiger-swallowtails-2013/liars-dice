@@ -3,21 +3,17 @@
 </form>
 <div class="dice">
   <h3>Your dice rolls</h3>
-  <img id="die1" src=''><img id="die2" src=''><img id="die3" src=''><img id="die4" src=''><img id="die5" src=''>
-  <div class="roll">
+    <div class="roll">
     <input id="roll-btn" data-dice-count="<%=@player.number_of_dice%>" type="submit" value="Roll dice">
   </div>
+  <img id="die1" src=''><img id="die2" src=''><img id="die3" src=''><img id="die4" src=''><img id="die5" src=''>
+
 </div>
 <div class="form">
   <form action="/claim" method="post">
-    Your claim:
-    <p id="labels">
-      Number of dice:
-      <br>
-      Die value:
-    </p>
-    <p id="menus">
-      <select name="numDice">
+    Your claim:<br>
+      <label for ="numDice">Number of dice:</label>
+      <select name="numDice" id="numDice">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -30,7 +26,8 @@
         <option value="10">10</option>
       </select>
       <br>
-      <select name="dieValue">
+      <label for ="dieValue">Die value:</label>
+      <select name="dieValue" id="dieValue">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -39,6 +36,5 @@
         <option value="6">6</option>
       </select>'s
     <input type="submit" value="Submit bid" id="bid-btn" disabled>
-    </p>
   </form>
 </div>
