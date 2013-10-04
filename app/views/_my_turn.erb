@@ -4,7 +4,7 @@
 <div class="dice">
   <h3>Your dice rolls</h3>
   <div class="roll">
-    <input id="roll-btn" data-dice-count="<%=@player.number_of_dice%>" type="image" value="Roll dice" src="button_roll.jpg">
+    <input id="roll-btn" data-dice-count="<%=@player.number_of_dice%>" type="image" src="button_roll.jpg">
     <audio id="sound" src="rolldice.mp3" preload="auto"> 
   </div>
   <img id="die1" src=''><img id="die2" src=''><img id="die3" src=''><img id="die4" src=''><img id="die5" src=''>
@@ -35,6 +35,6 @@
         <option value="5">5</option>
         <option value="6">6</option>
       </select>'s
-    <input type="image" value="Submit bid" id="bid-btn" src="button_bid.jpg">
+    <input type="image" id="bid-btn" src="button_bid.jpg">
   </form>
 </div>

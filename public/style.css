@@ -94,4 +94,10 @@ h1 {
   padding: 10px;
 }
 
-
+.winner {
+  text-align: center;
+  position: absolute;
+  bottom: 300px;
+  width: 300px;
+  left: 250px;
+}
