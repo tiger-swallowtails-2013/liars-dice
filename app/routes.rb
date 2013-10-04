@@ -38,11 +38,6 @@ get '/play' do
   end
 end
 
-get '/test.json' do
-  players = Player.all
-  json players
-end
-
 post '/refresh_check' do
   get_player
   get_current_game
