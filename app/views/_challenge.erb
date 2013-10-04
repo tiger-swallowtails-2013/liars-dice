@@ -3,6 +3,6 @@
     This is <%= @player.name %>'s claim:
   </h4>
   <% unless @previous_player.current_claim.nil? %>
-  <%= @previous_player.current_claim.each {|x| print x + " "} %>
+  <%= print_claim(@previous_player.current_claim) %>
   <% end %>
 </div>

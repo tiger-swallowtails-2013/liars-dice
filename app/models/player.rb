@@ -22,9 +22,9 @@ class Player < ActiveRecord::Base
 
   def check_lie
     unless current_claim == nil
-      match = /[#{current_claim[2]}]{#{current_claim[0]}}/
+      match = /[#{current_claim[1]}]{#{current_claim[0]}}/
       (current_roll.to_s =~ match).nil? ? self.bullshit = true : self.bullshit = false
-      self.save #necessary?
+      self.save
     end
   end
 end
