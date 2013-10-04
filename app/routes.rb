@@ -38,21 +38,22 @@ get '/play' do
   end
 end
 
-post '/refresh_check' do
+get '/refresh_game_board' do
   get_player
   get_current_game
   get_current_player
-  results_hash = {}
-  results_hash["waiting"] = erb :_player_queue, :layout => false
-  if i_am_the_current_player?
-    results_hash["current"] = "<h1>Test Successful</h1>"
-    # results_hash["current"] = erb :_my_turn, :layout => false
-  end
-  # p results_hash
-  # p json results_hash
-  # p session
-  json results_hash
+  p i_am_the_current_player?
+  i_am_the_current_player? ? 400 : (erb :_player_queue, :layout => false)
+end
 
+get '/refresh_current_player' do
+  get_player
+  get_current_game
+  get_current_player
+  # 1 == 1 ? 200 : 400 success
+  # 1 == 2 ? 200 : 400 fail
+  p i_am_the_current_player?
+  i_am_the_current_player? ? 200 : 400 
 end
 
 post '/rolls' do

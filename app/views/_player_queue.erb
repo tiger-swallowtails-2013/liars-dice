@@ -1,7 +1,9 @@
-Players:</br>
+<div class="player_queue">
+<em>Players in this game:</em><br>
 <%@game.players.all.each do |player|%>
   <%=player.name%>: <%=player.number_of_dice%> dice. Bid: <%=player.current_claim%>
   <%if @current_player == player %>
-    <%="***"%>
+    <%="*** current player"%>
   <%end%></br>
 <%end%>
+</div>

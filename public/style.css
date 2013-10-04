@@ -51,12 +51,13 @@ h1 {
   margin: 10px;
 }
 
-.form {
+.claim_form {
   position: absolute;
   right: 0;
   width: 200px;
   height: 100px;
   margin: 10px;
+  display: none;
 }
 
 #one, #two, #three, #four, #five {
@@ -65,7 +66,6 @@ h1 {
   width: 70px;
   height: 5px;
 }
-
 
 #labels {
   text-align: left;
@@ -85,9 +85,12 @@ h1 {
 
 .exit {
   position: relative;
-  top: 200px;
-  width: 10%;
+  right: 0;
+  bottom: 0;
   margin-left: auto;
   margin-right: auto;
 }
 
+.current_player {
+  display:block;
+}
