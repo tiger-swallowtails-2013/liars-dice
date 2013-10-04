@@ -34,6 +34,10 @@ h1 {
   margin-right: auto;
 }
 
+#sound {
+  display: none;
+}
+
 .login {
 
   position: relative;
