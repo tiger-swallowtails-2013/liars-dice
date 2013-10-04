@@ -41,8 +41,8 @@ h1 {
 .login {
 
   position: relative;
-  top: 300px;
-  width: 60%;
+  top: 200px;
+  width: 300px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -58,6 +58,7 @@ h1 {
 .form {
   position: absolute;
   right: 0;
+  top: 100px;
   width: 200px;
   height: 100px;
   margin: 10px;
@@ -67,7 +68,7 @@ h1 {
   position: absolute;
   bottom: -300px;
   width: 100px;
-  right: 150px;
+  right: 300px;
 }
 
 #one, #two, #three, #four, #five {
