@@ -1,0 +1,40 @@
+<form action="/bullshit" method="post">
+  <input type="image" src="button_chlng.jpg">
+</form>
+<div class="dice">
+  <h3>Your dice rolls</h3>
+    <div class="roll">
+    <input id="roll-btn" data-dice-count="<%=@player.number_of_dice%>" type="image" src="button_roll.jpg">
+    <audio id="sound" src="rolldice.mp3" preload="auto"> 
+  </div>
+  <img id="die1" src=''><img id="die2" src=''><img id="die3" src=''><img id="die4" src=''><img id="die5" src=''>
+</div>
+<div class="form">
+  <form action="/claim" method="post">
+    <h3>Your claim:</h3>
+      <label for ="numDice">Number of dice:</label>
+      <select name="numDice" id="numDice">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
+      <br>
+      <label for ="dieValue">Die value:</label>
+      <select name="dieValue" id="dieValue">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>'s
+    <input type="image" id="bid-btn" src="button_bid.jpg">
+  </form>
+</div>

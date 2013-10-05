@@ -65,6 +65,8 @@ $( document ).ready(function() {
   $( "#roll-btn" ).on( "click", function() {
     var number_of_dice = $(this).data('dice-count')
     var rolls = roll_dice(number_of_dice);
+    var diceSfx = document.getElementById("sound");
+    diceSfx.play();
     print_dice(rolls);
     $(".claim_form").toggle();
     console.log(rolls)
