@@ -14,29 +14,53 @@ function print_dice(rolls_array){
   })
 }
 
-function play_page_refresh(){
+// always refresh score
+function refresh_game_board(){
   if ($('.play').length > 0){
     setInterval(function(){ 
       $.ajax({
-        type: 'post',
-        url: '/refresh_check'
-        //data:
+        type: 'get',
+        url: '/refresh_game_board'
       }).done(function(server_data) {
-        console.log("SUCCESS:" + server_data);
-        $(".players").html(server_data["waiting"]);
-        if (server_data["current"]){
-          $(".test").html(server_data["current"]);
-        }
+        console.log("SUCCESS: refresh_game_board");
+        $('.player_queue').html(server_data)
       }).fail(function(){
-        console.log('fail');
+        console.log('fail refresh_game_board');
       });
-
-    }, 5000)
+    }, 3000)
   }
 }
+  // conditional refresh
+  function refresh_current_player(){
+    if ($('.play').length > 0){
+      setInterval(function(){ 
+        $.ajax({
+          type: 'get',
+          url: '/refresh_current_player',
+          statusCode: {
+            200: function() {
+              console.log("SUCCESS: refresh_current_player");
+              $( "#roll-btn" ).show()
+              $( '#bullshit').show()
+            },
+            400:function(){
+              console.log('FAIL refresh_current_player');
+              $( "#roll-btn" ).hide()
+              $( '#bullshit').hide()
+            }
+          }
+        })
+      }, 4000)
+    }
+  }
+
 
 $( document ).ready(function() {
-  play_page_refresh()
+  $( "#roll-btn" ).hide()
+  $( '#bullshit').hide()
+  $( '#your_dice').hide();
+  refresh_game_board()
+  refresh_current_player()
 
   $( "#roll-btn" ).on( "click", function() {
     var number_of_dice = $(this).data('dice-count')
@@ -44,9 +68,18 @@ $( document ).ready(function() {
     var diceSfx = document.getElementById("sound");
     diceSfx.play();
     print_dice(rolls);
-    $("#bid-btn").removeAttr("disabled");
-    $("#roll-btn").attr("disabled", true)
+    $(".claim_form").toggle();
     console.log(rolls)
     $.post('/rolls', { data: rolls } )
   });
+
+  $( "#claim-btn" ).on( "click", function() {
+    $('.claim_form').toggle();
+    $( "#roll-btn" ).hide();
+    $( '#bullshit').hide();
+    $( '#your_dice').hide();
+    
+  });
+
+
 });

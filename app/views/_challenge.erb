@@ -3,6 +3,6 @@
     This is <%= @player.name %>'s claim:
   </h4>
   <% unless @previous_player.current_claim.nil? %>
-  <%= print_claim(@previous_player.current_claim) %>
+    <%= print_claim(@previous_player.current_claim) %>
   <% end %>
 </div>

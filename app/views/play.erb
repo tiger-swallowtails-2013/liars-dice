@@ -1,15 +1,10 @@
 <div class="play">
   <%if winner? %></br></br> WE HAVE A WINNER!!!! <%end%>
 
-  <h3>Welcome to game <%=@game.id%>!</h3>
-  <em>Players in this game:</em><br>
-  <%@game.players.all.each do |player|%>
-    <%=player.name%>: <%=player.number_of_dice%> dice.<%if @current_player == player %><%="***"%><%end%><br>
-  <%end%>
-  <%if i_am_the_current_player? %>
-    <%= erb :_challenge %>
-    <%= erb :_my_turn %>
-  <%end%>
+  <h3>Welcome to game <%=@game.id%> <%=@player.name%>!</h3>
+  <%= erb :_player_queue %>
+  <%= erb :_current_player %>
+
   <div class="exit">
     <form action="/exit" method="get">
       <input type="image" value="Quit Game" src="button_quit.jpg">

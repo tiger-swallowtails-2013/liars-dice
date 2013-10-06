@@ -40,6 +40,8 @@ helpers do
   end
 
   def i_am_the_current_player?
+    # p session[:player_id]
+    # p @game
     session[:player_id] == get_current_player_id
   end
 
