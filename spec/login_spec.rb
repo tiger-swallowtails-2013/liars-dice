@@ -3,8 +3,8 @@ require 'spec_helper.rb'
 describe "starting the game", :type => :feature do
   it "takes user to the gameplay page" do
     visit '/'
-    click_button('Play Liars Dice!')
-    page.should have_content 'Your dice rolls'
+    click_link('/join')
+    page.should have_content 'Enter your name'
   end
 
   it "prints the users name on the gameplay page as entered on the login page" do
