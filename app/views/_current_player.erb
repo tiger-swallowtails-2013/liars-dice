@@ -1,12 +1,12 @@
 <div class="current_player">
-
   <div class="dice">
     <h3 id="your_dice">Your dice rolls</h3>
     <div class="roll">
-      <input id="roll-btn" data-dice-count="<%=@player.number_of_dice%>" type="submit" value="Roll dice">
       <form action="/bullshit" method="post">
-        <input id="bullshit" type="submit" value="Bullshit!">
+        <input id="bullshit" type="image" src="button_chlng.jpg">
       </form>
+      <input id="roll-btn" data-dice-count="<%=@player.number_of_dice%>" type="image" src="button_roll.jpg">
+      <audio id="sound" src="rolldice.mp3" preload="auto"></audio>
     </div>
 
     <img id="die1" src=''><img id="die2" src=''><img id="die3" src=''><img id="die4" src=''><img id="die5" src=''>
@@ -38,7 +38,7 @@
           <option value="5">5</option>
           <option value="6">6</option>
         </select>'s
-      <input type="submit" value="Submit bid" id="bid-btn">
+      <input type="image" id="bid-btn" src="button_bid.jpg">
     </form>
   </div>
 </div>

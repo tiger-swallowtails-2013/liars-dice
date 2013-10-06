@@ -3,12 +3,13 @@ require 'sinatra/json'
 enable :sessions
 
 get '/' do
-  # if session['player_id']
-  #   get_player
-  #   get_current_game
-  # else
+  if session['player_id']
+    get_player
+    get_current_game
+    erb :play
+  else
     erb :index
-  # end
+  end
 end
 
 get '/create_game' do
@@ -42,7 +43,7 @@ get '/refresh_game_board' do
   get_player
   get_current_game
   get_current_player
-  p i_am_the_current_player?
+  # p i_am_the_current_player?
   i_am_the_current_player? ? 400 : (erb :_player_queue, :layout => false)
 end
 
@@ -52,7 +53,7 @@ get '/refresh_current_player' do
   get_current_player
   # 1 == 1 ? 200 : 400 success
   # 1 == 2 ? 200 : 400 fail
-  p i_am_the_current_player?
+  # p i_am_the_current_player?
   i_am_the_current_player? ? 200 : 400 
 end
 
